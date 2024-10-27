@@ -44,24 +44,24 @@ def transform_load_data(task_instance):
                         }
     transformed_data_list = [transformed_data]
     df_data = pd.DataFrame(transformed_data_list)
-    aws_credentials = {"key": "*******", "secret": "*************", "token": "*********************************"}
+    aws_credentials = {"key": "*******", "secret": "*************", "token": "*****************"}
 
     now = datetime.now()
     dt_string = now.strftime("%d%m%Y%H%M%S")
     dt_string = 'current_weather_data_karachi_' + dt_string
-    df_data.to_csv(f"s3://weather-api-airflow-buckets3/{dt_string}.csv", index=False, storage_options=aws_credentials)
+    df_data.to_csv(f"s3://open-weather-api-airflow-buckets3/{dt_string}.csv", index=False, storage_options=aws_credentials)
 
 
 
 default_args = {
-    'owner': 'airflow',
+    'owner': 'Huzaifa',
     'depends_on_past': False,
     'start_date': datetime(2023, 1, 8),
-    'email': ['smaadil688@gmail.com'],
+    'email': ['huzaifameh12@gmail.com'],
     'email_on_failure': False,
     'email_on_retry': False,
     'retries': 2,
-    'retry_delay': timedelta(minutes=2)
+    'retry_delay': timedelta(minutes=5)
 }
 
 
